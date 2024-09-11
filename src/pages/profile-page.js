@@ -4,7 +4,7 @@ import { CodeSnippet } from "../components/code-snippet";
 import { PageLayout } from "../components/page-layout";
 
 export const ProfilePage = () => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
 
   if (!user) {
     return null;
@@ -26,6 +26,16 @@ export const ProfilePage = () => {
               <strong>Only authenticated users can access this page.</strong>
             </span>
           </p>
+          {isAuthenticated && (
+             <div>
+              <p>Hello USER</p>
+            </div>
+          )}
+          {!isAuthenticated &&(
+            <div>
+              <p>You are not logged in. Log in with your credentials</p>
+            </div>
+          )}
           <div className="profile-grid">
             <div className="profile__header">
               <img
